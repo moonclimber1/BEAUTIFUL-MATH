@@ -1,30 +1,37 @@
-// Noise Settings
-const divider =  5
-const octaves =  4
-const falloff = 0.8
+"use strict"
 
+// Noise Settings
+const divider =  10
+const octaves =  4
+const falloff = 0.3
 
 var circularNoise = null
+var noiseGens = null
+
 var colors = null
 var p = null
 
 var rad = 0;
 var noiseOffset = 0;
+var turnFactor = 1
+var individualism = 1;
 
 
 function preload(){
     colors = {
-        background: color(200),
-        colorA: color('#fc4674'),
-        colorB: color('#0c2fb3')
+        background: color(30),
+        A1: color('#F1F2B5'),
+        B1: color('#135058'),
+        A2: color('#ED4264'),
+        B2: color('#FFEDBC')
     }
 
     p = {
-        figures: 20,
+        figures: 8,
         minRadius: 0,
-        radius: 800,
+        radius: 900,
         baseFactor: 0.5,
-        noiseFactor: 0.5,
+        noiseFactor: 0.2,
         strokeWeight: 2,
     }
     initDatGui(p, drawFigure);
@@ -33,16 +40,19 @@ function preload(){
 
 function setup() {
     createCanvas(1000, 1000);
-    circularNoise = new CircularNoise(TWO_PI,divider,octaves,falloff);
+    noiseGens = [];
+    for(let i = 0; i < 1000; i++){
+        noiseGens.push(new CircularNoise(TWO_PI,divider,octaves,falloff))
+    }
     drawFigure();
 }
 
 
-function draw(){
-    //noiseOffset += 0.002
-    //p.radius += 1
-    drawFigure();
-}
+    function draw(){
+        noiseOffset += 0.01
+        //p.radius += 1
+        drawFigure();
+    }
 
 
 // function draw(){
@@ -57,10 +67,11 @@ function drawFigure(){
     background(colors.background);
     strokeWeight(p.strokeWeight)
     for(let i = 1; i<=p.figures; i++){
-        // circularNoise = new CircularNoise(TWO_PI,divider,octaves,falloff);
-        noiseOffset += 0.001
+        circularNoise = noiseGens[i-1]
+        // noiseOffset += 0.001
+        
         const radius = (i/p.figures) * p.radius + p.minRadius;
-        stroke(lerpColor(colors.colorA, colors.colorB, i/p.figures))
+        stroke(lerpColor(colors.A1, colors.B1, i/p.figures))
         drawNoisePolygon(360, radius, createVector(width/2,height/2));
     }
 }
@@ -72,11 +83,13 @@ function drawNoisePolygon(n, radius, pos){
         const x = cos(a) * radius;
         const y = sin(a) * radius;
         
-        const noiseParam = a + noiseOffset //* (radius/p.radius)
+        const noiseParam = a + noiseOffset * turnFactor * (3 +radius/p.radius)/4
+        turnFactor *= -1;
         const noise = (circularNoise.getNoise(noiseParam)-0.5) * 2 * p.noiseFactor;
         const pt = createVector(x,y).mult(p.baseFactor + noise).add(pos)
         points.push(pt);
     }
+    individualism += 0.001
     drawPath(points, true);
 }
 
