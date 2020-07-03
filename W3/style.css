@@ -1,0 +1,113 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comfortaa-Regular';
+    background-color: rgb(50, 19, 102);
+    color: white;
+  }
+
+  canvas{
+    display: block;
+    margin: 1.5rem auto 0.2rem;
+  }
+
+p{
+  max-width: 700px;
+  font-size: 17px;
+  line-height: 1.6em;
+  margin: 1rem auto;
+  padding: 2rem;
+  
+  border: 1px solid white;
+  border-radius: 0px;
+}
+
+/* Buton Styling */
+button {
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  margin: 1em auto;
+  display: block;
+  padding: 1em 2em;
+  box-shadow: inset 0 0 0 2px rgb(249, 86, 115);
+  color:  rgb(249, 86, 115);
+  font-size: inherit;
+  font-weight: 700;
+  position: relative;
+  vertical-align: middle;
+}
+
+button:active{
+  background-color: #fbca672c;
+}
+
+button:focus{
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+button::before, button::after {
+  box-sizing: inherit;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.draw {
+  -webkit-transition: color 0.25s;
+  transition: color 0.25s;
+}
+.draw::before, .draw::after {
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+.draw::before {
+  top: 0;
+  left: 0;
+}
+.draw::after {
+  bottom: 0;
+  right: 0;
+}
+.draw:hover {
+  color: #60daaa;
+}
+.draw:hover::before, .draw:hover::after {
+  width: 100%;
+  height: 100%;
+}
+.draw:hover::before {
+  border-top-color: #60daaa;
+  border-right-color: #60daaa;
+  -webkit-transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+.draw:hover::after {
+  border-bottom-color: #60daaa;
+  border-left-color: #60daaa;
+  -webkit-transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+}
+
+.meet:hover {
+  color: #fbca67;
+}
+.meet::after {
+  top: 0;
+  left: 0;
+}
+.meet:hover::before {
+  border-top-color: #fbca67;
+  border-right-color: #fbca67;
+}
+.meet:hover::after {
+  border-bottom-color: #fbca67;
+  border-left-color: #fbca67;
+  -webkit-transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+  transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+}

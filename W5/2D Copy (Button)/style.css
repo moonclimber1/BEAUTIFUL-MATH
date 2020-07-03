@@ -1,0 +1,78 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+  canvas {
+    display: block;
+  }
+
+  svg {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+
+    padding: 0;
+    margin: 0;
+  }
+
+  button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+
+    background: transparent;
+
+    /* show a hand cursor on hover; some argue that we
+    should keep the default arrow cursor for buttons */
+    cursor: pointer;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+
+}
+
+/* Remove excess padding and border in Firefox 4+ */
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+
+button {
+  
+  /* Custom CSS */
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  border: 6px solid yellowgreen;
+  border-radius: 4px;
+
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.play-wrapper{
+  width: 40px;
+  height: 40px;
+}
+
+  
